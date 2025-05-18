@@ -1,5 +1,5 @@
 export interface TEmail {
     email?: string;          
-    subject?: string;        
-    description?: string; 
+    name?: string;        
+    message?: string; 
 }

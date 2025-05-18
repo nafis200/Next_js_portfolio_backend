@@ -20,13 +20,14 @@ const loginUser = async (payload: TUser) => {
     role: user.role,
   };
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const accessToken = createToken(
     jwtPayload,
     config.jwt_access_secret as string,
   );
 
   return {
-    accessToken,
+    jwtPayload,
   };
 };
 

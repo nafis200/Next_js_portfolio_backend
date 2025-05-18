@@ -21,14 +21,14 @@ const RegisterUser = catchAsync(async (req, res) => {
 
   const loginUser = catchAsync(async (req, res) => {
     const result = await UserServices.loginUser(req.body);
-    const {  accessToken } = result;
+    const {  jwtPayload } = result;
   
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: "User is logged in succesfully!",
       data: {
-        accessToken,
+        jwtPayload,
       },
     });
   });

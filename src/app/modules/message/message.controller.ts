@@ -11,7 +11,7 @@ const createMessage = catchAsync(async (req, res) => {
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'Meessage created successfully',
+      message: 'Meessage Sent successfully',
       data: result,
     });
   });
