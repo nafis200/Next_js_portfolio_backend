@@ -3,6 +3,7 @@ import { UserRoutes } from '../modules/user/user.route';
 import { ProjectRoutes } from '../modules/project/project.route';
 import { BlogsRoutes } from '../modules/blogs/blog.route';
 import { MessageRoutes } from '../modules/message/message.route';
+import { ExperienceRoutes } from '../modules/experience/experience_route';
 
 const router = Router();
 
@@ -22,6 +23,10 @@ const moduleRoutes = [
   {
     path:'/message',
     route:MessageRoutes
+  },
+  {
+    path:'/experience',
+    route:ExperienceRoutes
   }
 ];
 

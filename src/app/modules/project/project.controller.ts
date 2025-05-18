@@ -5,8 +5,7 @@ import httpStatus from 'http-status';
 
 
 const createProject = catchAsync(async (req, res) => {
-    const Projectdata = req.body;
-    const result = await ProjectServices.createProjectIntoDB(Projectdata);
+    const result = await ProjectServices.createProjectIntoDB(req);
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,

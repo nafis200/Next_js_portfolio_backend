@@ -11,5 +11,8 @@ export default {
   jwt_access_expires_in: process.env.JWT_ACCESS_EXPIRES_IN,
   brcypt_salt_rounds: process.env.BCRYPT_SALT_ROUNDS,
   node_mailer_email:process.env.USER_EMAIL,
-  node_mailer_password:process.env.USER_PASS
+  node_mailer_password:process.env.USER_PASS,
+  cloudinary_cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  cloudinary_api_key: process.env.CLOUDINARY_API_KEY,
+  cloudinary_api_secret: process.env.CLOUDINARY_API_SECRET,
 };

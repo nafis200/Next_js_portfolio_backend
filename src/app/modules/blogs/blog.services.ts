@@ -1,10 +1,24 @@
-
 import { ObjectId } from 'mongodb';
 import { Blogs } from './blogs.model';
-import type { TBlogs } from './blogs.interface';
+// import type { TBlogs } from './blogs.interface';
+import { Request } from 'express';
+import type { IFile } from '../../interface/file';
 
-const createBlogsIntoDB = async (payload: TBlogs) => {
+const createBlogsIntoDB = async (req: Request) => {
+  const file = req.file as IFile;
+
+  let profilePhoto = null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  if (file) profilePhoto = file.path;
+
+  const payload = {
+    image: profilePhoto,
+    title: req.body.title,
+    description: req.body.description,
+  };
+
   const result = await Blogs.create(payload);
+
   return result;
 };
 
@@ -23,31 +37,33 @@ const deleteBlogsFromDB = async (carId: string) => {
   return result;
 };
 
-const UpdateBlogsFromDB = async (
-  projectId: string,
-  ProjectData: Partial<TBlogs>,
-) => {
+const UpdateBlogsFromDB = async (projectId: string, req: Partial<Request>) => {
+  const file = req.file as IFile;
 
+  let profilePhoto = null;
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  if (file) profilePhoto = file.path;
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const payload: Record<string, any> = {};
 
+  if (profilePhoto) payload.image = profilePhoto;
+  if (req.body?.title) payload.title = req.body.title;
+  if (req.body?.description) payload.description = req.body.description;
+
+  
   const result = await Blogs.findByIdAndUpdate(
     projectId,
-    {
-      $set: {
-        ...ProjectData,
-      },
-    },
-    {
-      new: true,
-      runValidators: true,
-    },
+    { $set: payload },
+    { new: true, runValidators: true },
   );
-  return result
+
+  return result;
 };
 
 export const BlogServices = {
   createBlogsIntoDB,
   getAllBlogsIntoDB,
   deleteBlogsFromDB,
-  UpdateBlogsFromDB
+  UpdateBlogsFromDB,
 };

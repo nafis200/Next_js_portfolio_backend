@@ -8,7 +8,6 @@ export const ProjectValidationSchema = z.object({
      description: z
     .array(z.string().min(1, { message: "Each description must be at least 10 characters long" }))
     .nonempty({ message: "Description is required" }),
-    image: z.string().url({ message: "Invalid image URL" }),
     github_link: z.string().url({ message: "Invalid GitHub link" }),
     project_link: z.string().url({ message: "Invalid project link" }),
   }),

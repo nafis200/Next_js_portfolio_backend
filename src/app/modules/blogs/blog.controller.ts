@@ -6,7 +6,7 @@ import { BlogServices } from "./blog.services";
 
 
 const createBlogs = catchAsync(async (req, res) => {
-    const Projectdata = req.body;
+    const Projectdata = req;
     const result = await BlogServices.createBlogsIntoDB(Projectdata);
     sendResponse(res, {
       statusCode: httpStatus.OK,
@@ -41,8 +41,9 @@ const createBlogs = catchAsync(async (req, res) => {
 
   const UpdateSingleBlogs = catchAsync(async (req, res) => {
     const { projectId } = req.params;
-    const ProjectData = req.body;
-    const result = await BlogServices.UpdateBlogsFromDB(projectId, ProjectData);
+    
+  
+    const result = await BlogServices.UpdateBlogsFromDB(projectId, req);
   
   
     if (result !== null) {
