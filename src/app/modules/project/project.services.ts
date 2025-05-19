@@ -3,6 +3,7 @@ import { Project } from './project.model';
 import { ObjectId } from 'mongodb';
 import { Request } from 'express';
 import type { IFile } from '../../interface/file';
+import Querybuilders from '../../builders/Querybuilders';
 
 const createProjectIntoDB = async (req: Request) => {
   const file = req.file as IFile;
@@ -25,7 +26,9 @@ const createProjectIntoDB = async (req: Request) => {
 };
 
 const getAllProjectIntoDB = async () => {
-  const result = await Project.find();
+  const Query = new Querybuilders(Project.find(), {});
+  const result = await Query.sort().exec();
+
   return result;
 };
 
